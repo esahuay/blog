@@ -16,5 +16,4 @@
         {!! Form::submit('Acceder', ['class' => 'btn btn-primary']) !!}
     </div>
     {!! Form::close() !!}
-
 @endsection

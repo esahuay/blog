@@ -15,7 +15,7 @@ Route::get('/', function () {
         return view('welcom');
 });
 
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
 
     Route::resource('users','UsersController');
     Route::get('users/{id}/destroy',[
