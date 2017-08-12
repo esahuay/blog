@@ -20,32 +20,8 @@
                 <li><a href="{{ route('admin.categories.index') }}">Categorias</a></li>
                 <li><a href="#">Articulos</a></li>
                 <li><a href="#">Imagenes</a></li>
-                <li><a href="#">Tags</a></li>
-               <!--
-                Drop down: lista con boton
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-                -->
+                <li><a href="{{ route('admin.tags.index') }}">Tags</a></li>
             </ul>
-            <!--
-            Dialogo de la busqueda. Text in y button
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            -->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Página Principal</a></li>
                 <li class="dropdown">
