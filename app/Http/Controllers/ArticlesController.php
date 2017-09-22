@@ -12,6 +12,8 @@ use App\Category;
 use App\Article;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
+use App\Http\Requests\ArticleRequest;
+use Carbon\Carbon;
 
 class ArticlesController extends Controller
 {
@@ -22,7 +24,12 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('admin.articles.index');
+        $articles = Article::orderBy('id','DESC')->paginate(5);
+        $articles->each(function($articles){
+            $articles->category;
+            $articles->user;
+        });
+        return view('admin.articles.index')->with('articles',$articles);
     }
 
     /**
@@ -45,7 +52,7 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         //Manipulacion de imagenes
         if($request->file('image'))
@@ -57,21 +64,40 @@ class ArticlesController extends Controller
             $file->move($path, $name);
         }
 
+        $date = Carbon::now('America/Guatemala');
+
         $article = new Article($request->all());
         $article->user_id = \Auth::user()->id;
-        $article->save();
+        $article->fecha_inic = $date;
+        $enIf = "no";
+        $f_entrega;
+        if(empty($request->fecha_fin)){
+            $f_entrega = $date;
+            $enIf = "si";       
+            $f_entrega = Carbon::parse($f_entrega);    
+            $f_entrega->addMinutes(30);
+            $article->fecha_fin = $f_entrega;
+            $article->save();
+        }else{
+            $fecha_entrega = $request->fecha_fin . ' ' . $date->hour . ':' . $date->minute . ':' . $date->second;
+            $f_entrega = Carbon::parse($fecha_entrega);    
+            $f_entrega->addMinutes(30);
+            $article->fecha_fin = $fecha_entrega;
+            $article->save();
+        }
 
         // actualizar la tabla muchos a muchos
         $article->tags()->sync($request->tags);
 
-        // relacionar nuevo articulo recien creado.
-        $imag = new Image();
-        $imag->name = $name;
-        $imag->article()->associate($article);
-        $imag->save();
+        if($request->file('image')){
+            // relacionar nuevo articulo recien creado.
+            $imag = new Image();
+            $imag->name = $name;
+            $imag->article()->associate($article);
+            $imag->save();
+        }
 
-        Flash::success('Se a creado el articulo '.$article->title.' de forma satisfactoria !');
-
+        Flash::success($enIf. ' Se a creado el articulo '.$article->title.' de forma satisfactoria ! '.$article->fecha_fin. ' fecha actual '.$date. ' parseado '. $f_entrega . ' diferencia ' . $f_entrega->diffInMinutes($date));
         return redirect()->route('admin.articles.index');
     }
 
@@ -94,7 +120,21 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+        $article->category;
+        $categories = Category::orderby('name','ASC')->lists('name','id');
+        $d_fin = Carbon::parse($article->fecha_fin);
+        $date_fin = $d_fin->toDateString();
+        $hora_fin = $d_fin->toTimeString();
+        $my_tags = $article->tags->lists('id')->ToArray();
+        $tags = Tag::orderby('name','ASC')->lists('name','id');
+        return view('admin.articles.edit')
+            ->with('categories',$categories)
+            ->with('article',$article)
+            ->with('tags',$tags)
+            ->with('date_fin',$date_fin)
+            ->with('hora_fin',$hora_fin)
+            ->with('my_tags',$my_tags);
     }
 
     /**
@@ -106,7 +146,13 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::find($id);
+        $article->fill($request->all());
+        $article->save();
+
+        $article->tags()->sync($request->tags);
+        Flash::warning('El Arituclo ' . $article->title . ' se a sido editado con exito!');
+        return redirect()->route('admin.articles.index');
     }
 
     /**
@@ -117,6 +163,10 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        $article->delete();
+
+        Flash::error('Se ha borrado el articulo ' . $article->title . 'de forma exitosa!');
+        return redirect()->route('admin.articles.index');
     }
 }

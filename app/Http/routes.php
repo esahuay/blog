@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-        return view('welcom');
-});
+Route::get('/',['as' => 'principal.index', function () {
+        return view('principal.index');
+}]);
 
 Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
 
@@ -37,9 +37,17 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
 
     Route::resource('articles','ArticlesController');
     Route::get('articles/{id}/destroy',[
-        'uses'   => 'ArticleController@destroy',
+        'uses'   => 'ArticlesController@destroy',
         'as'    => 'admin.articles.destroy'
     ]);
+
+    Route::post('guardaEventos', array('as'=> 'guardaEventos','uses'=>'CalendarController@create'));
+
+    Route::resource('calendars','CalendarController');
+    Route::get('cargaEventos{id?}',[
+        'uses'  => 'CalendarController@vereventos',
+        'as'    => 'admin.calendars'
+        ]);
 });
 
 Route::get('admin/auth/login', [
