@@ -11,7 +11,6 @@
             <th> es </th>
             <th>bootstrap</th>
         </tr>
-
         <tr>
             <a href="" class="btn btn-success"> Soy un botón de bootstrap</a>
         </tr>

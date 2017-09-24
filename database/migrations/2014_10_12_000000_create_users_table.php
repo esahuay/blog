@@ -21,27 +21,6 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
-        Schema::create('school_child', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('school_id')->unsigned();
-            $table->integer('child_id')->unsigned();
-
-            $table->foreign('school_id')->references('id')->on('users');
-            $table->foreign('child_id')->references('id')->on('users');
-            $table->timestamps();
-        });
-
-        Schema::create('parent_child', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('parent_id')->unsigned();
-            $table->integer('child_id')->unsigned();
-
-            $table->foreign('parent_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('child_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->timestamps();
-        });
     }
 
     /**
@@ -51,8 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('parent_child');
-        Schema::drop('school_child');
         Schema::drop('users');
     }
 }

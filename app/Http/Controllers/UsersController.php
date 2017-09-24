@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -44,6 +42,7 @@ class UsersController extends Controller
     {
         //
         $user = new User($request->all());
+        $user->password = bcrypt($request->password);
         $user->save();
         Flash::success("Se ha registrado " . $user->name . " de forma exitosa"); //<!--  Enviar mensajes a otra pagina -->
         return redirect()->route('admin.users.index');

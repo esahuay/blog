@@ -33,7 +33,7 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-    protected $redirectPath='/admin';
+    protected $redirectPath='/admin/index';
 
     protected $loginPath='/admin/auth/login';
 
@@ -67,7 +67,8 @@ class AuthController extends Controller
         ]);
     }
 
-    protected  function getLogin(){
+    protected  function getLogin()
+    {
         return view('admin.auth.login');
     }
 

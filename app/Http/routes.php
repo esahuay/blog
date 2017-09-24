@@ -11,11 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-        return view('welcom');
-});
+Route::get('/',['as' => 'principal.index', function () {
+        return view('principal.index');
+}]);
 
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
+
+    Route::get('/index',['as' => 'admin.index', function () {
+        return view('admin.index');
+    }]);
 
     Route::resource('users','UsersController');
     Route::get('users/{id}/destroy',[
@@ -28,6 +32,26 @@ Route::group(['prefix'=>'admin'],function(){
         'uses'  =>  'CategoriesController@destroy',
         'as'    =>  'admin.categories.destroy'
     ]);
+
+    Route::resource('tags','TagsController');
+    Route::get('tags/{id}/destroy',[
+        'uses'   => 'TagsController@destroy',
+        'as'    => 'admin.tags.destroy'
+    ]);
+
+    Route::resource('articles','ArticlesController');
+    Route::get('articles/{id}/destroy',[
+        'uses'   => 'ArticlesController@destroy',
+        'as'    => 'admin.articles.destroy'
+    ]);
+
+    Route::post('guardaEventos', array('as'=> 'guardaEventos','uses'=>'CalendarController@create'));
+
+    Route::resource('calendars','CalendarController');
+    Route::get('cargaEventos{id?}',[
+        'uses'  => 'CalendarController@vereventos',
+        'as'    => 'admin.calendars'
+        ]);
 });
 
 Route::get('admin/auth/login', [

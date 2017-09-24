@@ -23,7 +23,7 @@ class Article extends Model  /* implements  SluggableInterface*/
 
     protected  $table = "articles";
 
-    protected  $fillable = ['title','content','category_id','user_id'];
+    protected  $fillable = ['title','content','category_id','fecha_inic','fecha_fin','todoeldia','user_id'];
 
     public function category()
     {
