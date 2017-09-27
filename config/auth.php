@@ -15,8 +15,6 @@ return [
     |
     */
 
-    'driver' => 'eloquent',
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Model
@@ -27,8 +25,6 @@ return [
     | is often just the "User" model but you may use whatever you like.
     |
     */
-
-    'model' => App\User::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +37,19 @@ return [
     |
     */
 
-    'table' => 'users',
+
+'multi' => [
+    'user' => [
+        'driver' => 'eloquent',
+        'model'  => App\User::class,
+        'table'  => 'users'
+    ],
+    'admin' => [
+        'driver' => 'eloquent',
+        'model'  => App\Admin::class,
+        'table'  => 'admins'
+    ]
+ ],
 
     /*
     |--------------------------------------------------------------------------
