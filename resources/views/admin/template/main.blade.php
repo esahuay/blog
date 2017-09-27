@@ -46,7 +46,7 @@
             <div class="container-fluid">
                 <div class = "collapse navbar-collapse">
                     <p class="navbar-text"> Todos los derechos reservados &copy 2017</p>
-                    <p class="navbar-text navbar-right">Reminder</p>
+                    <p class="navbar-text navbar-right">Codigo Facilito</p>
                 </div>
             </div>
         </nav>

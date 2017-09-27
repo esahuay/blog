@@ -25,6 +25,11 @@
           <li><a href="{{ route('front.calendar') }}">Calendario</a></li>
         </ul>
         @endif
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#"> Login <span class="caret"></span></a>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -54,7 +59,7 @@
             <div class="container-fluid">
                 <div class = "collapse navbar-collapse">
                     <p class="navbar-text"> Todos los derechos reservados &copy 2017</p>
-                    <p class="navbar-text navbar-right">Reminder</p>
+                    <p class="navbar-text navbar-right">Codigo Facilito</p>
                 </div>
             </div>
         </nav>

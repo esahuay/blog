@@ -1,4 +1,4 @@
-@extends('principal.index')
+@extends('admin.template.main')
 
 @section('title','Lista de Articulos')
 
