@@ -109,7 +109,22 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::find($id);
+        $article->category;
+        $categories = Category::orderby('name','ASC')->lists('name','id');
+        $d_fin = Carbon::parse($article->fecha_fin);
+        $date_fin = $d_fin->toDateString();
+        $hora_fin = $d_fin->toTimeString();
+        $my_tags = $article->tags->lists('id')->ToArray();
+        $tags = Tag::orderby('name','ASC')->lists('name','id');
+        return view('admin.articles.edit')
+            ->with('categories',$categories)
+            ->with('article',$article)
+            ->with('tags',$tags)
+            ->with('date_fin',$date_fin)
+            ->with('hora_fin',$hora_fin)
+            ->with('my_tags',$my_tags);
+
     }
 
     /**

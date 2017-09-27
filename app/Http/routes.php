@@ -15,6 +15,23 @@ Route::get('/',['as' => 'principal.index', function () {
         return view('principal.index');
 }]);
 
+Route::get('articles/{slug}',[
+    'uses'  => 'FrontController@viewArticle',
+    'as'    => 'front.view.article'
+]);
+
+
+Route::resource('calendars','CalendarController');
+    Route::get('cargaEventos{id?}',[
+        'uses'  => 'CalendarController@vereventos',
+        'as'    => 'admin.calendars'
+        ]);
+
+    Route::get('calendar',[
+        'uses'  => 'CalendarController@publico',
+        'as'    => 'front.calendar'
+        ]);
+
 Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
 
     Route::get('/index',['as' => 'admin.index', function () {
@@ -47,11 +64,6 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
 
     Route::post('guardaEventos', array('as'=> 'guardaEventos','uses'=>'CalendarController@create'));
 
-    Route::resource('calendars','CalendarController');
-    Route::get('cargaEventos{id?}',[
-        'uses'  => 'CalendarController@vereventos',
-        'as'    => 'admin.calendars'
-        ]);
 });
 
 Route::get('admin/auth/login', [

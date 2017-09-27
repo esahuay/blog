@@ -16,9 +16,15 @@
         <div class="navbar-header">
           <a href="{{ route('principal.index') }}" class="navbar-brand">Reminder</a>
         </div>
+        @if(Auth::user())
         <ul class="nav navbar-nav">
-          <li><a href="{{ route('admin.calendars.index') }}">Calendario</a></li>
+          <li><a href="{{ route('calendars.index') }}">Calendario</a></li>
         </ul>
+        @else
+        <ul class="nav navbar-nav">
+          <li><a href="{{ route('front.calendar') }}">Calendario</a></li>
+        </ul>
+        @endif
       </div>
     </div>
 

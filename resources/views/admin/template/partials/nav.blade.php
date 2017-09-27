@@ -18,7 +18,7 @@
                 <li class="active"><a href="{{ route('admin.index') }}">Inicio <span class="sr-only">(current)</span></a></li>
                 <li><a href="{{ route('admin.users.index') }}">Usuarios <span class="glyphicon glyphicon-user"></span></a></li>
                 <li><a href="{{ route('admin.categories.index') }}">Categorias <span class="glyphicon glyphicon glyphicon-list"></a></li>
-                <li><a href="{{ route('admin.calendars.index') }}">Calendario <i class="fa fa-calendar" aria-hidden="true"></i></a></li>
+                <li><a href="{{ route('calendars.index') }}">Calendario <i class="fa fa-calendar" aria-hidden="true"></i></a></li>
                 <li><a href="{{ route('admin.articles.index') }}">Anunciar <i class="fa fa-bullhorn" aria-hidden="true"></i></a></li>
                 <li><a href="{{ route('admin.tags.index') }}">Salones <span class="glyphicon glyphicon-tags"></span></a></li>
                 

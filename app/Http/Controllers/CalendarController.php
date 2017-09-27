@@ -17,7 +17,12 @@ class CalendarController extends Controller
      */
     public function index()
     {
-            return view('report.calendario');
+        return view('report.calendarios');
+    }
+
+    public function publico()
+    {
+        return view('report.calendario');
     }
 
     /*
@@ -32,7 +37,7 @@ class CalendarController extends Controller
         $fechaIni = Article::all()->lists('fecha_inic');
         $fechaFin = Article::all()->lists('fecha_fin');
         $count = count($id); //contamos los ids obtenidos para saber el numero exacto de eventos
- 
+        $slug = Article::all()->lists('slug');
         //hacemos un ciclo para anidar los valores obtenidos a nuestro array principal $data
         for($i=0;$i<$count;$i++){
             $data[$i] = array(
@@ -40,6 +45,7 @@ class CalendarController extends Controller
                 "start"=>$fechaIni[$i], //por el plugin asi que asignamos a cada uno el valor correspondiente
                 "end"=>$fechaFin[$i],
                 "id"=>$id[$i],
+                "slug"=>"articles/" . $slug[$i],
                 "content"=>$descripcion[$i] . $authid
                 //"url"=>"cargaEventos".$id[$i]
                 //en el campo "url" concatenamos el el URL con el id del evento para luego

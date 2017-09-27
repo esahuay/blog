@@ -99,7 +99,7 @@
         day: 'dia'
       },
 
-      events: {url: "cargaEventos"},
+      events: {url: "cargaEventos" + {{ Auth::user()->id }} },
 
       editable: false,
       droppable: false, // this allows things to be dropped onto the calendar !!!
