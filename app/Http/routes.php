@@ -20,8 +20,6 @@ Route::get('articles/{slug}',[
     'as'    => 'front.view.article'
 ]);
 
-
-Route::resource('calendars','CalendarController');
     Route::get('cargaEventos{id?}',[
         'uses'  => 'CalendarController@vereventos',
         'as'    => 'admin.calendars'
@@ -32,11 +30,19 @@ Route::resource('calendars','CalendarController');
         'as'    => 'front.calendar'
         ]);
 
+Route::resource('students','StudentController');
+    Route::get('students/{id}/destroy',[
+        'uses'   => 'StudentController@destroy',
+        'as'    => 'students.destroy'
+    ]);
+
 Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
 
     Route::get('/index',['as' => 'admin.index', function () {
         return view('admin.index');
     }]);
+
+    Route::resource('calendars','CalendarController');
 
     Route::resource('users','UsersController');
     Route::get('users/{id}/destroy',[

@@ -38,16 +38,7 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
 
 
-    public function  child(){
-        return $this->hasMany('App\User')->withTimestamps();
+    public function  students(){
+        return $this->belongsToMany('App\Student')->withTimestamps();
     }
-
-    public function parent(){
-        return $this->hasMany('App\User')->withTimestamps();
-    }
-
-    public function school(){
-        return $this->hasMany('App\user')->withTimestamps();
-    }
-
 }

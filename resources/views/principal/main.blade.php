@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="{{ asset('css/cerulean/cerulean.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/cerulean/bootstrap.min.js') }}">
     <link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/fullcalendar.css') }}">
     </head>
@@ -18,7 +17,7 @@
         </div>
         @if(Auth::user())
         <ul class="nav navbar-nav">
-          <li><a href="{{ route('calendars.index') }}">Calendario</a></li>
+          <li><a href="{{ route('admin.calendars.index') }}">Calendario</a></li>
         </ul>
         @else
         <ul class="nav navbar-nav">

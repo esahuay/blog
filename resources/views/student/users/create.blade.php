@@ -1,8 +1,13 @@
 @extends('admin.template.main')
-@section('title','crear usuario')
+@section('title','Inscribir Estudiante')
 @section('content')
 
-    {!! Form::open(['route' => 'admin.users.store','method'=>'POST']) !!}
+    {!! Form::open(['route' => 'students.store','method'=>'POST']) !!}
+        <div class="form-group">
+            {!! Form::label('College','College') !!}
+            {!! Form::text('college',Auth::user()->id, ['class' => 'form-control', 'Required', 'readonly']) !!}
+        </div>
+
         <div class="form-group">
             {!! Form::label('name','Nombre') !!}
             {!! Form::text('name',null, ['class' => 'form-control', 'placeholder'=> 'Nombre Completo', 'Required']) !!}
@@ -20,7 +25,7 @@
 
         <div class="form-group">
             {!! Form::label('type','Tipo') !!}
-            {!! Form::select('type', ['admin' => 'Administrador', 'school' => 'Colegio', 'teacher' => 'Profesor'], null, ['class' =>'form-control','placeholder'=>'selecciona una opcion','required']) !!}
+            {!! Form::select('type', ['kinder' => 'Kinder', 'high' => 'High'], null, ['class' =>'form-control','placeholder'=>'selecciona la etapa','required']) !!}
         </div>
 
 

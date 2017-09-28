@@ -1,9 +1,16 @@
 @extends('principal.index')
 
-@section('title','Lista de Articulos')
+@section('title','Calendario')
 
 @section('content')
 <div class="panel panel-default">
+  <?php
+    $resultado = 0;
+    if(Auth::user()){
+      $resultado = Auth::user()->id;
+    }
+  ?>
+
     <!-- Content Header (Page header) -->
     <div class="panel-heading"><h2> Calendario </h2>  </div>
     <div class="panel-body">
@@ -52,6 +59,7 @@
 
 @section('scripts')
    <script>
+  var resultado = "";
   $(function () {
     /* initialize the external events
      -----------------------------------------------------------------*/
@@ -99,7 +107,7 @@
         day: 'dia'
       },
 
-      events: {url: "cargaEventos"},
+      events: {url: "cargaEventos"+ {{$resultado}} },
 
       editable: false,
       droppable: false, // this allows things to be dropped onto the calendar !!!
