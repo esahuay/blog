@@ -1,7 +1,7 @@
 @extends('admin.template.main')
 @section('title','Editar estudiante ' . $Student->name)
 @section('content')
-    {!! Form::open(['route' => ['students.update',$Student->id],'method'=>'PUT']) !!}
+    {!! Form::open(['route' => ['admin.students.update',$Student->id],'method'=>'PUT']) !!}
     <div class="form-group">
         {!! Form::label('name','Nombre') !!}
         {!! Form::text('name',$Student->name, ['class' => 'form-control', 'placeholder'=> 'Nombre Completo', 'Required']) !!}
@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Editar',['class' => 'btn btn-primary']) !!}
+        {!! Form::submit('Actualizar',['class' => 'btn btn-primary']) !!}
     </div>
 
     {!! Form::close() !!}

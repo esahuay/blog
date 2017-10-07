@@ -12,7 +12,8 @@ use App\Student;
 use App\User;
 
 class StudentController extends Controller
-{ 
+{
+
     /**
      * Display a listing of the resource.
      *
@@ -52,7 +53,7 @@ class StudentController extends Controller
         // actualizar la tabla muchos a muchos
         $Student->college()->sync($idcol);
         Flash::success("Se ha registrado " . $Student->name . " de forma exitosa"); //<!--  Enviar mensajes a otra pagina -->
-        return redirect()->route('students.index');
+        return redirect()->route('admin.students.index');
     }
  /**
      * Show the form for editing the specified resource.
@@ -81,7 +82,7 @@ class StudentController extends Controller
         $Student->type = $request->type;
         $Student->save();
         Flash::warning('El estudiante ' . $Student->name . ' a sido editado con exito!');
-        return redirect()->route('students.index');
+        return redirect()->route('admin.students.index');
     }
 
     /**
@@ -97,6 +98,26 @@ class StudentController extends Controller
         $Student->delete();
 
         Flash::error('El estudiante: ' . $Student->name . ' a sido borrado de forma exitosa');
-        return redirect()->route('students.index');
+        return redirect()->route('admin.students.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('student.users.view');
+    }
+
+    /**
+    *
+    */
+    public function home()
+    {
+        return view('student.users.view');
+
     }
 }

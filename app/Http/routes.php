@@ -30,17 +30,23 @@ Route::get('articles/{slug}',[
         'as'    => 'front.calendar'
         ]);
 
-Route::resource('students','StudentController');
-    Route::get('students/{id}/destroy',[
-        'uses'   => 'StudentController@destroy',
-        'as'    => 'students.destroy'
+    Route::get('students/home',[
+        'uses'   => 'StudentController@home',
+        'as'    => 'students.home'
     ]);
+    
 
 Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
 
     Route::get('/index',['as' => 'admin.index', function () {
         return view('admin.index');
     }]);
+
+    Route::resource('students','StudentController');
+    Route::get('students/{id}/destroy',[
+        'uses'   => 'StudentController@destroy',
+        'as'    => 'students.destroy'
+    ]);
 
     Route::resource('calendars','CalendarController');
 
@@ -86,3 +92,32 @@ Route::get('admin/auth/logout', [
     'uses'  =>  'Auth\AuthController@getLogout',
     'as'    =>  'admin.auth.logout'
 ]);
+
+
+Route::get('student/auth/login', [
+    'uses'  =>  'Auth\StudentAuthController@getLogin',
+    'as'    =>  'student.auth.login'
+    ]);
+
+Route::post('student/auth/login', [
+    'uses'  =>  'Auth\StudentAuthController@postLogin',
+    'as'    =>  'student.auth.login'
+]);
+
+Route::get('student/auth/logout', [
+    'uses'  =>  'Auth\StudentAuthController@getLogout',
+    'as'    =>  'student.auth.logout'
+]);
+
+/*
+*   Otras rutas
+*/
+
+Route::get('/home', ['uses' => 'UsersController@getHome']);
+Route::controller('/user', 'Auth\AuthController');
+Route::controller('/password', 'Auth\PasswordController');
+ 
+ 
+Route::get('student/auth/login', ['uses' => 'Auth\StudentAuthController@getLogin']);
+Route::controller('/student/password', 'Auth\StudentPasswordController');
+Route::controller('/student', 'Auth\StudentAuthController');

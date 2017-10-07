@@ -4,7 +4,7 @@
 
 @section('content')
     <hr>
-    <a href="{{ route('students.create') }}" class="btn btn-info">Agregar Estudiante</a>
+    <a href="{{ route('admin.students.create') }}" class="btn btn-info">Agregar Estudiante</a>
     <hr>
     <table class="table table-striped">
         <thead>
@@ -26,10 +26,10 @@
                             <span class="label label-primary">{{ $student->type }}</span>
                         @endif
                     </td>
-                    <td><a href="{{ route('students.edit',$student->id) }}" class="btn btn-warning">
+                    <td><a href="{{ route('admin.students.edit',$student->id) }}" class="btn btn-warning">
                             <span class="glyphicon glyphicon-edit"></span> Editar
                         </a>
-                        <a href="{{ route('students.destroy',$student->id) }}" onclick="return confirm('Seguro deseas eliminarlo')" class="btn btn-danger">
+                        <a href="{{ route('admin.students.destroy',$student->id) }}" onclick="return confirm('Seguro deseas eliminarlo')" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Eliminar
                         </a>
                     </td>
