@@ -2,6 +2,8 @@
       <div class="container">
         <div class="navbar-header">
           <a href="{{ route('principal.index') }}" class="navbar-brand">Reminder</a>
+          <a href="{{ route('student.home') }}" class="navbar-brand">Home</a>
+          <a href="{{ route('student.calendar') }}" class="navbar-brand">Calendar</a>
         </div>
         @if(Auth::user('student'))
           <ul class="nav navbar-nav navbar-right">

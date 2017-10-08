@@ -35,13 +35,13 @@ Route::group(['prefix'=>'student','middleware'=>'student'],function(){
         'uses'  => 'CalendarController@student',
         'as'    => 'student.calendar'
     ]);
-});
 
-    Route::get('student/home',[
+    Route::get('home',[
         'uses'   => 'StudentController@home',
         'as'    => 'student.home'
     ]);
-    
+
+});    
 
 Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
 

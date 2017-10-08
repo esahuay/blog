@@ -1,0 +1,53 @@
+[33mcommit 2f4ccf01c1a920b259d926c18b5b7555c1692bc4[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: esahuay <eliseosahuay@gmail.com>
+Date:   Sat Oct 7 13:38:32 2017 -0600
+
+    Students multi auth
+
+[33mcommit d8ee1c308d9e955ee1fa657516c7c1dc812ca608[m[33m ([m[1;33mtag: v0.56[m[33m, [m[1;33mtag: push[m[33m)[m
+Author: esahuay <eliseosahuay@gmail.com>
+Date:   Thu Sep 28 04:58:42 2017 -0600
+
+    Se agrego el CRUD Students
+
+[33mcommit b2f9900be076b5dad9ae0fcebdca95a1233f7829[m[33m ([m[1;33mtag: v0.55[m[33m)[m
+Author: esahuay <eliseosahuay@gmail.com>
+Date:   Wed Sep 27 12:59:36 2017 -0600
+
+    sin multi auth view completo
+
+[33mcommit bdcb316babe6a7b5e14531523db6af586ae8eef7[m[33m ([m[1;33mtag: v0.54[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: esahuay <eliseosahuay@gmail.com>
+Date:   Wed Sep 27 12:00:29 2017 -0600
+
+    sin multi auth
+
+[33mcommit 96e953b32abd155f982b72e3c472c723b61e47d1[m[33m ([m[1;33mtag: v0.53[m[33m)[m
+Author: esahuay <eliseosahuay@gmail.com>
+Date:   Tue Sep 26 23:24:39 2017 -0600
+
+    agrego la agenda publica y privada
+
+[33mcommit 4f096731c2b772ae4cde8d1db818b39e811520f9[m[33m ([m[1;33mtag: v0.51[m[33m)[m
+Author: esahuay <eliseosahuay@gmail.com>
+Date:   Sun Sep 24 06:29:33 2017 -0600
+
+    paginas actuales creadas
+
+[33mcommit 87a563fecfdce4dedb0c0bad54d2ca8cf596cc6f[m
+Author: esahuay <eliseosahuay@gmail.com>
+Date:   Mon Aug 7 15:09:51 2017 -0600
+
+    2do video 22
+
+[33mcommit a01d367d2a1e43c27bed73fb9e05c130105cd28e[m
+Author: esahuay <eliseosahuay@gmail.com>
+Date:   Mon Aug 7 14:16:41 2017 -0600
+
+    Initial commit
+
+[33mcommit b55c506e660fba8fa8a6656d35c4b2a7d096c3ed[m
+Author: esahuay <eliseosahuay@gmail.com>
+Date:   Mon Aug 7 14:12:06 2017 -0600
+
+    Initial commit
