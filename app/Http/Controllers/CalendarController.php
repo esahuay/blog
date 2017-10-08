@@ -25,6 +25,10 @@ class CalendarController extends Controller
         return view('report.calendario');
     }
 
+    public function student()
+    {
+        return view('report.studentcalendario');
+    }
     /*
     * Despliega los eventos en el calendario
     */

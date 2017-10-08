@@ -10,28 +10,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/fullcalendar.css') }}">
     </head>
   <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="{{ route('principal.index') }}" class="navbar-brand">Reminder</a>
-        </div>
-        @if(Auth::user())
-        <ul class="nav navbar-nav">
-          <li><a href="{{ route('admin.calendars.index') }}">Calendario</a></li>
-        </ul>
-        @else
-        <ul class="nav navbar-nav">
-          <li><a href="{{ route('front.calendar') }}">Calendario</a></li>
-        </ul>
-        @endif
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#"> Login <span class="caret"></span></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
+    @include('principal.nav')
     <hr>
     <hr>
     <hr>

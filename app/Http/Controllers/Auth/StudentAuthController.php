@@ -25,7 +25,6 @@ class StudentAuthController extends Controller
 
     protected $loginPath='/student/auth/login';
     protected $redirectAfterLogout = "/student/auth/login";
-    protected $redirectPath='/students/index';
     /**
      * Get a validator for an incoming registration request.
      *
@@ -44,7 +43,7 @@ class StudentAuthController extends Controller
     protected  function getLogin()
     {
         if(\Auth::user('student')){
-            return redirect()->route('students.home');
+            return redirect()->route('student.home');
         }
         return view('student.auth.login');
     }

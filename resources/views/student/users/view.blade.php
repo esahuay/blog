@@ -1,8 +1,8 @@
-hola desde el view student
-@if(Auth::user('student'))
-	si hay check
-@else
-	no hay check
-@endif
+@extends('principal.main')
 
+@section('title', 'home')
+
+@section('content')
+hola desde el view student
 {{ \Auth::user('student')->name }}
+@endsection

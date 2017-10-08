@@ -30,9 +30,16 @@ Route::get('articles/{slug}',[
         'as'    => 'front.calendar'
         ]);
 
-    Route::get('students/home',[
+Route::group(['prefix'=>'student','middleware'=>'student'],function(){
+    Route::get('calendar',[
+        'uses'  => 'CalendarController@student',
+        'as'    => 'student.calendar'
+    ]);
+});
+
+    Route::get('student/home',[
         'uses'   => 'StudentController@home',
-        'as'    => 'students.home'
+        'as'    => 'student.home'
     ]);
     
 

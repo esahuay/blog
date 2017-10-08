@@ -1,6 +1,6 @@
-@extends('admin.template.main')
+@extends('principal.main')
 
-@section('title', 'Login Students')
+@section('title', 'Login')
 
 @section('content')
     {!! Form::open(['route' => 'student.auth.login', 'method' => 'POST']) !!}

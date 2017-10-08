@@ -34,8 +34,8 @@ class StudentGuest
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check('student')) {
-            return redirect('/students/index');
+        if (\Auth::check('student')) {
+            return redirect('/student/home');
         }
  
         return $next($request);
