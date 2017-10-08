@@ -13,8 +13,8 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('type','Tipo') !!}
-        {!! Form::select('type', ['kinder' => 'Kinder', 'high' => 'High'], $Student->type, ['class' =>'form-control','placeholder'=>'selecciona la etapa','required']) !!}
+        {!! Form::label('tags','Salones') !!}
+        {!! Form::select('my_tags[]',$tags, $my_tags,['class'=> 'form-control select-tag']) !!}
     </div>
 
     <div class="form-group">

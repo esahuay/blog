@@ -1,7 +1,7 @@
 @extends('admin.template.main')
 @section('title','Lista de Tags')
 @section('content')
-    <a href="{{ route('admin.tags.create') }}" class="btn btn-info">Agregar Tag</a>
+    <a href="{{ route('admin.tags.create') }}" class="btn btn-info">Agregar Salon</a>
     <!-- Buscador de TAGS-->
         {!! Form::open(['route'=>'admin.tags.index', 'method'=>'GET','class'=>'navbar-form pull-right']) !!}
         <div class="input-group">

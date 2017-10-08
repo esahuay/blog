@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\Student;
+use App\Tag;
 
 class CalendarController extends Controller
 {
@@ -35,6 +37,7 @@ class CalendarController extends Controller
     public function vereventos($authid)
     {
         $data = array(); //declaramos un array principal que va contener los datos
+        $studentact = Student::find($authid);
         $id = Article::all()->lists('id'); //listamos todos los id de los eventos
         $titulo = Article::all()->lists('title'); //lo mismo para lugar y fecha
         $descripcion = Article::all()->lists('content');

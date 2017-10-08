@@ -41,6 +41,16 @@ Route::group(['prefix'=>'student','middleware'=>'student'],function(){
         'as'    => 'student.home'
     ]);
 
+    Route::get('cargaEventos{id?}',[
+        'uses'  => 'CalendarController@vereventos',
+        'as'    => 'admin.calendars'
+    ]);
+
+    Route::get('articles/{slug}',[
+        'uses'  => 'FrontController@viewArticle',
+        'as'    => 'front.view.article'
+    ]);
+
 });    
 
 Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
@@ -48,6 +58,16 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
     Route::get('/index',['as' => 'admin.index', function () {
         return view('admin.index');
     }]);
+
+    Route::get('cargaEventos{id?}',[
+        'uses'  => 'CalendarController@vereventos',
+        'as'    => 'admin.calendars'
+    ]);
+
+    Route::get('articles/{slug}',[
+        'uses'  => 'FrontController@viewArticle',
+        'as'    => 'front.view.article'
+    ]);
 
     Route::resource('students','StudentController');
     Route::get('students/{id}/destroy',[

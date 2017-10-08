@@ -39,4 +39,9 @@ class Student extends Model implements AuthenticatableContract,
     public function  college(){
         return $this->belongsToMany('App\User');
     }
+    
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 }

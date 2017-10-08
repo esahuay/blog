@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/cerulean/cerulean.css')}}">
     <link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css')}}">
     </head>
   <body>
     @include('principal.nav')
@@ -21,23 +22,25 @@
         </div>
         <div class="panel-body">
           <section>
-                      @yield('content')
+            @yield('content')
           </section>
         </div>
       </div>
-    </div>    
+    </div>
+    <script src="{{ asset('plugins/jquery/js/jquery-3.0.js') }}"></script>
     <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
     <script src="{{ asset('plugins/jquery/js/moment.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}"></script>
     <script src="{{ asset('plugins/fullcalendar/fullcalendar.js') }}"></script>
+    <script src="{{ asset('plugins/chosen/chosen.jquery.js') }}"></script>
     @yield('js')
     @yield('scripts')
     <footer class="admin-footer">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class = "collapse navbar-collapse">
-                    <p class="navbar-text"> Todos los derechos reservados &copy 2017</p>
-                    <p class="navbar-text navbar-right">Codigo Facilito</p>
+                    <p class="navbar-text"> Todos los derechos reservados & copy 2017</p>
+                    <p class="navbar-text navbar-right">Reminder</p>
                 </div>
             </div>
         </nav>

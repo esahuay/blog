@@ -11,7 +11,6 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Correo</th>
-            <th>Tipo</th>
             <th>Accion</th>
         </thead>
         <tbody>
@@ -19,13 +18,6 @@
                     <td>{{ $student->id }}</td>
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>
-                    <td>
-                        @if($student->type == "admin")
-                            <span class="label label-danger" >{{ $student->type }}</span>
-                        @else
-                            <span class="label label-primary">{{ $student->type }}</span>
-                        @endif
-                    </td>
                     <td><a href="{{ route('admin.students.edit',$student->id) }}" class="btn btn-warning">
                             <span class="glyphicon glyphicon-edit"></span> Editar
                         </a>

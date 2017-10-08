@@ -45,8 +45,8 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class = "collapse navbar-collapse">
-                    <p class="navbar-text"> Todos los derechos reservados &copy 2017</p>
-                    <p class="navbar-text navbar-right">Codigo Facilito</p>
+                    <p class="navbar-text"> Todos los derechos reservados & copy 2017</p>
+                    <p class="navbar-text navbar-right">Reminder</p>
                 </div>
             </div>
         </nav>
