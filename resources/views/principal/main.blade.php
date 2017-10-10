@@ -9,23 +9,31 @@
     <link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/fullcalendar.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css')}}">
-    </head>
+  </head>
   <body>
-    @include('principal.nav')
-    <hr>
-    <hr>
-    <hr>
+
+@include('principal.barnav')
     <div class="container">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class = 'panel-title'>@yield('title')</h3>
+        <div class="page-header" id="banner">
+            <div class="bs-docs-section clearfix">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="page-header">
+                            <h1 id="navbar">@yield('title')</h1>
+                        </div>
+                        <div class="bs-component">
+                            <div class="panel panel-default"> 
+                                <div class="panel-body">
+                                  <section>
+                                    @yield('content')
+                                  </section>
+                                </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-          <section>
-            @yield('content')
-          </section>
-        </div>
-      </div>
     </div>
     <script src="{{ asset('plugins/jquery/js/jquery-3.0.js') }}"></script>
     <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.js') }}"></script>
@@ -48,3 +56,5 @@
 
   </body>
 </html>
+
+

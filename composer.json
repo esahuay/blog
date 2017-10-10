@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.1.*",
         "sarav/laravel-multiauth": "^0.0.7",
         "laracasts/flash": "^3.0",
-        "nesbot/carbon": "~1.14"
+        "nesbot/carbon": "~1.14",
+        "riverskies/laravel-mobile-detect": "^1.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
