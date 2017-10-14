@@ -11,20 +11,24 @@ class FrontController extends Controller
 {
     public function viewArticle($slug)
     {
-        $article = Article::findBySlugOrFail($slug);
-        $cat = $article->category->name;
-        $myname = $article->user->name;
-        $mytags = $article->tags->lists('id')->ToArray();
-        $images = $article->images;
-        $mytitle = $article->title;
-        $mycontent = $article->content;
-        $myhour = $article->fecha_fin;
-        return view('report.viewArticle')
-        ->with('category',$cat)
-        ->with('tags',$mytags)
-        ->with('title',$mytitle)
-        ->with('content',$mycontent)
-        ->with('name',$myname)
-        ->with('hour',$myhour);
+        $art = Article::all()->lists('id');
+        $total = count($art);
+        if($total > 0){
+            $article = Article::findBySlugOrFail($slug);
+            $cat = $article->category->name;
+            $myname = $article->user->name;
+            $mytags = $article->tags->lists('id')->ToArray();
+            $images = $article->images;
+            $mytitle = $article->title;
+            $mycontent = $article->content;
+            $myhour = $article->fecha_fin;
+            return view('report.viewArticle')
+            ->with('category',$cat)
+            ->with('tags',$mytags)
+            ->with('title',$mytitle)
+            ->with('content',$mycontent)
+            ->with('name',$myname)
+            ->with('hour',$myhour);
+        }
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFullcalendareventsTable extends Migration
+class AddDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateFullcalendareventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fullcalendarevents', function (Blueprint $table) {
+        Schema::create('documents', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('titulo');
-            $table->datetime('fecha_inic');
-            $table->datetime('fecha_fin')->nullable();
-            $table->datetime('todoeldia')->nullable();
+            $table->string('name');
+            $table->integer('tarea_id')->unsigned();
+
+            $table->foreign('tarea_id')->references('id')->on('tareas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateFullcalendareventsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('fullcalendarevents');
+        Schema::drop('documents');
     }
 }

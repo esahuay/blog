@@ -16,7 +16,10 @@
         @if(Auth::user())
              <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ route('admin.index') }}">Inicio <span class="sr-only">(current)</span></a></li>
-                <li><a href="{{ route('admin.users.index') }}">Usuarios <span class="glyphicon glyphicon-user"></span></a></li>
+                @if(strcmp (Auth::user()->type , "admin" ) == 0 )
+                     <li><a href="{{ route('admin.users.index') }}">Colegios <span class="glyphicon glyphicon-user"></span></a></li>
+                @endif
+                <li><a href="{{ route('admin.profesors.index') }}">Profesores <span class="glyphicon glyphicon-user"></span></a></li>
                 <li><a href="{{ route('admin.students.index') }}">Estudiantes <span class="glyphicon glyphicon-user"></span></a></li>
                 <li><a href="{{ route('admin.categories.index') }}">Categorias <span class="glyphicon glyphicon glyphicon-list"></a></li>
                 <li><a href="{{ route('admin.calendars.index') }}">Calendario <i class="fa fa-calendar" aria-hidden="true"></i></a></li>

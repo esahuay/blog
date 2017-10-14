@@ -12,6 +12,11 @@ return [
             'driver' => 'eloquent',
             'model'  => App\Student::class,
             'table'  => 'students'
+        ],
+        'profesor' => [
+            'driver' => 'eloquent',
+            'model'  => App\Profesor::class,
+            'table'  => 'profesors'
         ]
     ],
 

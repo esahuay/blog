@@ -4,13 +4,6 @@
 
 @section('content')
 <div class="panel panel-default">
-  <?php
-    $resultado = 0;
-    if(Auth::user('student')){
-      $resultado = Auth::user('student')->id;
-    }
-  ?>
-
     <!-- Content Header (Page header) -->
     <!-- Main content -->
     <section class="content">
@@ -85,7 +78,7 @@
         day: 'dia'
       },
 
-      events: {url: "cargaEventos"+ {{$resultado}} },
+      events: {url: "StudentEventos" },
 
       editable: false,
       droppable: false, // this allows things to be dropped onto the calendar !!!

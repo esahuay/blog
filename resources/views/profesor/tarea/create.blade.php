@@ -1,8 +1,8 @@
-@extends('admin.template.main');
+@extends('profesor.template.main');
 @section('title','Agregar Articulo');
 @section('content')
 
-    {!! Form::open(['route'=>'admin.articles.store','method'=>'POST', 'files'=>true])!!}
+    {!! Form::open(['route'=>'profesor.tareas.store','method'=>'POST', 'files'=>true])!!}
         <div class="form-group">
             {!! Form::label('title','Titulo') !!}
             {!! Form::text('title',null,['class'=>'form-control', 'placeholder'=>'Titulo del articulo','required']) !!}
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Agregar Articulo',['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Agregar Tarea',['class'=>'btn btn-primary']) !!}
         </div>
     {!! Form::close() !!}
 @endsection

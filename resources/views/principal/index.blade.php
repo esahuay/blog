@@ -13,4 +13,5 @@
           <p>
           a las tareas de los más pequeños.
 	</div>
+     <a href="{{ route('admin.auth.login') }}">Admin</a>
 @endsection

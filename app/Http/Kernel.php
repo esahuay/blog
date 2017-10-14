@@ -32,6 +32,9 @@ class Kernel extends HttpKernel
 
 
         'student'       => \App\Http\Middleware\StudentAuthenticate::class,
-        'student.guest' => \App\Http\Middleware\StudentGuest::class
+        'student.guest' => \App\Http\Middleware\StudentGuest::class,
+
+        'profesor'       => \App\Http\Middleware\ProfesorAuthenticate::class,
+        'profesor.guest' => \App\Http\Middleware\ProfesorGuest::class
     ];
 }

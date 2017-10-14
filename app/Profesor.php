@@ -10,18 +10,17 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract,
+class Profesor extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
-
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'profesors';
 
     /**
      * The attributes that are mass assignable.
@@ -37,12 +36,12 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-
-    public function  students(){
-        return $this->belongsToMany('App\Student')->withTimestamps();
+    public function  college(){
+        return $this->belongsToMany('App\User');
     }
-
-    public function  profesors(){
-        return $this->belongsToMany('App\Profesor')->withTimestamps();
+    
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
     }
 }

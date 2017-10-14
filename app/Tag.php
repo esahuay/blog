@@ -15,6 +15,11 @@ class Tag extends Model
         return $this->belongsToMany('App\Article')->withTimestamps();
     }
 
+    public function Tareas()  
+    {
+        return $this->belongsToMany('App\Tarea')->withTimestamps();
+    }
+
     public function Students()  
     {
         return $this->belongsToMany('App\Student')->withTimestamps();

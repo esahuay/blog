@@ -1,33 +1,14 @@
-@extends('principal.index')
+@extends('profesor.template.main')
 
 @section('title','Calendario')
 
 @section('content')
 <div class="panel panel-default">
+
     <!-- Content Header (Page header) -->
-    <div class="panel-heading"><h2> Calendario </h2>  </div>
-    <div class="panel-body">
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-3">
-          <div class="box box-solid">
-            <div class="box-header with-border">
-            </div>
-            <div class="box-body">
-              <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                </ul>
-              </div>
-              <!-- /btn-group -->
-              <div class="input-group">
-                <!-- /btn-group -->
-              </div><br/><br/>
-              <!-- /input-group -->
-              {!! Form::open(['route' => ['guardaEventos'], 'method' => 'POST', 'id' =>'form-calendario']) !!}
-              {!! Form::close() !!}
-            </div>
-          </div>
-        </div>
         <!-- /.col -->
         <div class="col-md-9">
           <div class="box box-primary">
@@ -46,13 +27,10 @@
     <!-- /.content -->
    </div><!-- /.panel-body -->
   </div><!-- /.panel -->
-</div>
-</div>
 @endsection
 
 @section('scripts')
    <script>
-  var resultado = "";
   $(function () {
     /* initialize the external events
      -----------------------------------------------------------------*/
@@ -100,8 +78,7 @@
         day: 'dia'
       },
 
-      events: {url: "cargaEventos"},
-
+      events: {url: "ProfesorEventos"},
       editable: false,
       droppable: false, // this allows things to be dropped onto the calendar !!!
       //PopUp

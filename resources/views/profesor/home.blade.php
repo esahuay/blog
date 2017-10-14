@@ -1,8 +1,8 @@
-@extends('principal.main')
+@extends('profesor.template.main')
 
 @section('title', 'home')
 
 @section('content')
 hola desde el view student
-{{ \Auth::user('student')->name }}
+{{ \Auth::user('profesor')->name }}
 @endsection

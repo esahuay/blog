@@ -15,20 +15,43 @@ Route::get('/',['as' => 'principal.index', function () {
         return view('principal.index');
 }]);
 
-Route::get('articles/{slug}',[
+Route::get('cargaEventos{id?}',[
+    'uses'  => 'CalendarController@vereventos',
+    'as'    => 'admin.calendars'
+    ]);
+
+Route::get('calendar',[
+    'uses'  => 'CalendarController@publico',
+    'as'    => 'front.calendar'
+    ]);
+
+Route::get('article/{slug}',[
     'uses'  => 'FrontController@viewArticle',
     'as'    => 'front.view.article'
 ]);
 
-    Route::get('cargaEventos{id?}',[
-        'uses'  => 'CalendarController@vereventos',
-        'as'    => 'admin.calendars'
-        ]);
-
+Route::group(['prefix'=>'profesor','middleware'=>'profesor'], function(){
     Route::get('calendar',[
-        'uses'  => 'CalendarController@publico',
-        'as'    => 'front.calendar'
-        ]);
+        'uses'  => 'CalendarController@profesor',
+        'as'    => 'profesor.calendar'
+    ]);
+
+    Route::get('home',[
+        'uses'   => 'ProfesorController@home',
+        'as'    => 'profesor.home'
+    ]);
+
+    Route::get('ProfesorEventos',[
+        'uses'  => 'CalendarController@ProfesorEventos',
+        'as'    => 'profesor.ProfesorEventos'
+    ]);
+
+    Route::resource('tareas','TareaController');
+    Route::get('tareas/{id}/destroy',[
+        'uses'   => 'TareaController@destroy',
+        'as'    => 'profesor.tareas.destroy'
+    ]);
+});
 
 Route::group(['prefix'=>'student','middleware'=>'student'],function(){
     Route::get('calendar',[
@@ -46,11 +69,15 @@ Route::group(['prefix'=>'student','middleware'=>'student'],function(){
         'as'    => 'admin.calendars'
     ]);
 
-    Route::get('articles/{slug}',[
+    Route::get('StudentEventos',[
+        'uses'  => 'CalendarController@StudentEventos',
+        'as'    => 'admin.StudentEventos'
+    ]);
+
+    Route::get('article/{slug}',[
         'uses'  => 'FrontController@viewArticle',
         'as'    => 'front.view.article'
     ]);
-
 });    
 
 Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
@@ -60,11 +87,11 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
     }]);
 
     Route::get('cargaEventos{id?}',[
-        'uses'  => 'CalendarController@vereventos',
+        'uses'  => 'CalendarController@vereventosColegio',
         'as'    => 'admin.calendars'
     ]);
 
-    Route::get('articles/{slug}',[
+    Route::get('article/{slug}',[
         'uses'  => 'FrontController@viewArticle',
         'as'    => 'front.view.article'
     ]);
@@ -73,6 +100,12 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
     Route::get('students/{id}/destroy',[
         'uses'   => 'StudentController@destroy',
         'as'    => 'students.destroy'
+    ]);
+
+    Route::resource('profesors','ProfesorController');
+    Route::get('profesors/{id}/destroy',[
+        'uses'   => 'ProfesorController@destroy',
+        'as'    => 'profesors.destroy'
     ]);
 
     Route::resource('calendars','CalendarController');
@@ -102,7 +135,6 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'],function(){
     ]);
 
     Route::post('guardaEventos', array('as'=> 'guardaEventos','uses'=>'CalendarController@create'));
-
 });
 
 Route::get('admin/auth/login', [
@@ -120,7 +152,7 @@ Route::get('admin/auth/logout', [
     'as'    =>  'admin.auth.logout'
 ]);
 
-
+// Rutas login Estudiantes
 Route::get('student/auth/login', [
     'uses'  =>  'Auth\StudentAuthController@getLogin',
     'as'    =>  'student.auth.login'
@@ -136,6 +168,23 @@ Route::get('student/auth/logout', [
     'as'    =>  'student.auth.logout'
 ]);
 
+
+// Rutas login Profesores
+Route::get('profesor/auth/login', [
+    'uses'  =>  'Auth\ProfesorAuthController@getLogin',
+    'as'    =>  'profesor.auth.login'
+    ]);
+
+Route::post('profesor/auth/login', [
+    'uses'  =>  'Auth\ProfesorAuthController@postLogin',
+    'as'    =>  'profesor.auth.login'
+]);
+
+Route::get('profesor/auth/logout', [
+    'uses'  =>  'Auth\ProfesorAuthController@getLogout',
+    'as'    =>  'profesor.auth.logout'
+]);
+
 /*
 *   Otras rutas
 */
@@ -148,3 +197,8 @@ Route::controller('/password', 'Auth\PasswordController');
 Route::get('student/auth/login', ['uses' => 'Auth\StudentAuthController@getLogin']);
 Route::controller('/student/password', 'Auth\StudentPasswordController');
 Route::controller('/student', 'Auth\StudentAuthController');
+
+
+Route::get('profesor/auth/login', ['uses' => 'Auth\profesorAuthController@getLogin']);
+Route::controller('/profesor/password', 'Auth\profesorPasswordController');
+Route::controller('/profesor', 'Auth\profesorAuthController');

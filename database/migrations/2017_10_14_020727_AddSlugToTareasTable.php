@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnToStudents extends Migration
+class AddSlugToTareasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddColumnToStudents extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
-            //agregar la columna para relacionar al estudiante con la clase, grado o sección.
+        Schema::table('tareas',function(Blueprint $table){
+           $table->string('slug')->nullable();
         });
     }
 
@@ -24,8 +24,8 @@ class AddColumnToStudents extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
-            //
+        Schema::table('tareas',function(Blueprint $table){
+            $table->dropColumn('slug');
         });
     }
 }

@@ -24,7 +24,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('id','DESC')->paginate(5);
+        $collegeid = \Auth::user()->id;
+        $articles = Article::where('user_id',$collegeid)->orderBy('id','DESC')->paginate(5);
         $articles->each(function($articles){
             $articles->category;
             $articles->user;
