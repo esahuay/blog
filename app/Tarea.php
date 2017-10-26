@@ -39,4 +39,8 @@ class Tarea extends Model  implements  SluggableInterface
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

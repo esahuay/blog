@@ -23,10 +23,10 @@
                     <td>{{ $tarea->profesor->name }}</td>
                     <td>
                         <a href="{{route('profesor.tareas.edit', $tarea->id)}}" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-edit"></span> Editar
+                            <span class="glyphicon glyphicon-edit"></span>
                         </a>
                         <a href="{{route('profesor.tareas.destroy', $tarea->id)}}" onclick="return confirm('Seguro deseas eliminarlo')" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Eliminar
+                            <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     </td>
                 </tr>

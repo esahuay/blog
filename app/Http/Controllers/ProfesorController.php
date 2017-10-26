@@ -11,6 +11,8 @@ use Laracasts\Flash\Flash;
 use App\Profesor;
 use App\User;
 use App\Tag;
+use App\Article;
+use App\Tarea;
 
 class ProfesorController extends Controller
 {
@@ -116,6 +118,74 @@ class ProfesorController extends Controller
     */
     public function home()
     {
+
+        $Profesorid = \Auth::user('profesor')->id;
+        $profesorAct = Profesor::find($Profesorid);
+
+        $col = $profesorAct->college[0]->id;
+
+        $data = array();
+        $data2 = array();
+        $dataresul = array();
+        $id = Article::where('user_id',$col)->lists('id');
+        $titulo = Article::where('user_id',$col)->lists('title');
+        $descripcion = Article::where('user_id',$col)->lists('content');
+        $fechaIni = Article::where('user_id',$col)->lists('fecha_inic');
+        $fechaFin = Article::where('user_id',$col)->lists('fecha_fin');
+        $count = count($id);
+        $slug = Article::where('user_id',$col)->lists('slug');
+        
+        for($i=0;$i<$count;$i++){
+            $data[$i] = array(
+                "title"=>$titulo[$i],
+                "start"=>$fechaIni[$i],
+                "end"=>$fechaFin[$i],
+                "id"=>$id[$i],
+                "slug"=>"articles/" . $slug[$i],
+                "content"=>$descripcion[$i]
+            );
+        }
+        json_encode($data);
+
+        foreach ($profesorAct->tags as $tag) {
+            $resul =$tag->id; //obtenemos el id del tag al que esta relacionado.
+            $id = Tarea::whereHas('tags', function($query) use ($resul) {
+                return $query->where('tag_id', $resul);
+            })->where('user_id',$col)->lists('id');
+            $titulo = Tarea::whereHas('tags', function($query) use ($resul) {
+                return $query->where('tag_id', $resul);  
+            })->where('user_id',$col)->lists('title');
+            $descripcion = Tarea::whereHas('tags', function($query) use ($resul)  {
+                return $query->where('tag_id', $resul);  
+            })->where('user_id',$col)->lists('content');
+            $fechaIni = Tarea::whereHas('tags', function($query) use ($resul)  {
+                return $query->where('tag_id', $resul);
+            })->where('user_id',$col)->lists('fecha_inic');
+            $fechaFin = Tarea::whereHas('tags', function($query) use ($resul)  {
+                return $query->where('tag_id', $resul);
+            })->where('user_id',$col)->lists('fecha_fin');
+            $count2 = count($id);
+            $slug = Tarea::whereHas('tags', function($query) use ($resul)  {
+                return $query->where('tag_id', $resul);
+            })->where('user_id',$col)->lists('slug');     
+
+            $resul = $count + $count2;
+            $j=0;
+            for($i;$i<$resul;$i++){
+                $data[$i] = array(
+                    "title"=>$titulo[$j],
+                    "start"=>$fechaIni[$j],
+                    "end"=>$fechaFin[$j],
+                    "id"=>$id[$j],
+                    "slug"=>"tarea/" . $slug[$j],
+                    "content"=>$descripcion[$j]
+                );
+                $j++;
+            }
+        json_encode($data);
+        }
+
+        dd($data);
         return view('profesor.home');
     }
 }

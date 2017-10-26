@@ -51,6 +51,7 @@ class AddProfesorsTable extends Migration
      */
     public function down()
     {
+        Schema::drop('profesor_tag');
         Schema::drop('profesor_user');
         Schema::drop('profesors');
     }

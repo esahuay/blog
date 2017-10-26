@@ -136,6 +136,7 @@ class CalendarController extends Controller
         $col = $profesorAct->college[0]->id;
 
         $data = array();
+        $data2 = array();
         $id = Article::where('user_id',$col)->lists('id');
         $titulo = Article::where('user_id',$col)->lists('title');
         $descripcion = Article::where('user_id',$col)->lists('content');
@@ -156,7 +157,5 @@ class CalendarController extends Controller
         }
         json_encode($data); //convertimos el array principal $data a un objeto Json 
         return $data; //para luego retornarlo y estar listo para consumirlo
-
     }
-
 }

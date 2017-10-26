@@ -50,8 +50,8 @@ class AddStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('student_tag');
         Schema::drop('student_user');
+        Schema::drop('student_tag');
         Schema::drop('students');
     }
 }

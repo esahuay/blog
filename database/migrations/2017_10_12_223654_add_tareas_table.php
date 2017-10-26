@@ -16,9 +16,11 @@ class AddTareasTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
+            $table->integer('user_id')->unsigned();
             $table->integer('profesor_id')->unsigned();
             $table->integer('category_id')->unsigned();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('profesor_id')->references('id')->on('profesors')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');            
             $table->timestamps();
@@ -44,7 +46,7 @@ class AddTareasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tarea_tag');
+        Schema::drop('tag_tarea');
         Schema::drop('tareas');
     }
 }

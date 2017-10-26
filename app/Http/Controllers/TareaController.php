@@ -14,6 +14,7 @@ use App\Tarea;
 use App\Tag;
 use App\Category;
 use App\Document;
+use App\Profesor;
 
 class TareaController extends Controller
 {
@@ -54,6 +55,13 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $Profesorid = \Auth::user('profesor')->id;
+        $profesorAct = Profesor::find($Profesorid);
+
+        $col = $profesorAct->college[0]->id;
+
         if($request->file('image'))
         {
             $file = $request->file('image');
@@ -67,6 +75,7 @@ class TareaController extends Controller
 
         $tarea = new tarea($request->all());
         $tarea->profesor_id = \Auth::user('profesor')->id;
+        $tarea->user_id = $col;
         $tarea->fecha_inic = $date;
         $enIf = "no";
         $f_entrega;
@@ -90,7 +99,7 @@ class TareaController extends Controller
 
         if($request->file('image')){
             // relacionar nuevo articulo recien creado.
-            $Document = new Image();
+            $Document = new Document();
             $Document->name = $name;
             $Document->tarea()->associate($tarea);
             $Document->save();
